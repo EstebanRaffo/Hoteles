@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 import Hero from "./components/Hero";
 import Filtros from "./components/Filtros";
-import Hoteles from "./components/Hoteles";
+// import Hoteles from "./components/Hoteles";
 import Moment from "moment";
 
 // function App() {
@@ -33,13 +33,13 @@ class App extends Component{
 
     this.state = {
       filters: {
+        // dateFrom: today,
+        // dateTo: new Date(today.valueOf() + 86400000),
         dateFrom: Moment(new Date()).format("YYYY-MM-DD"),
-        dateTo: Moment()
-          .add(1, "month")
-          .format("YYYY-MM-DD"),
-        country: "select",
-        price: "select",
-        rooms: "select"
+        dateTo: Moment().add(1, "month").format("YYYY-MM-DD"),
+        country: "",
+        price: 0,
+        rooms: 0
       },
       hotels: [],
       filteredHotels: [],
@@ -52,7 +52,7 @@ class App extends Component{
       <Fragment>
          <Hero filters={this.state.filters}/>
          <Filtros />
-         <Hoteles />
+         {/* <Hoteles />  */}
       </Fragment>  
     );  
   }

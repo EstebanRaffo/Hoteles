@@ -15,7 +15,8 @@ class Hero extends Component{
                     <div className="container">
                     <h1 className="title">Hoteles</h1>
                     <h2 className="subtitle">
-                        desde el <strong>dddd, DD de mmmm de AAAA</strong> hasta el <strong>dddd, DD de mmmm de AAAA</strong>
+                    desde el <strong>{this.props.filters.dateFrom}</strong> hasta el <strong>{this.props.filters.dateTo}</strong>
+                        {/* desde el <strong>dddd, DD de mmmm de AAAA</strong> hasta el <strong>dddd, DD de mmmm de AAAA</strong> */}
                     </h2>
                     </div>
                 </div>
