@@ -51,7 +51,7 @@ class App extends Component{
     return(
       <Fragment>
          <Hero filters={this.state.filters}/>
-         <Filtros />
+         <Filtros filters={this.state.filters}/>
          {/* <Hoteles />  */}
       </Fragment>  
     );  
