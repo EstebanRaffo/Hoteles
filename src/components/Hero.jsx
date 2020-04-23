@@ -5,12 +5,20 @@ class Hero extends Component{
     constructor(props){
         super(props);
 
-        this.state = {};
+        this.state = {
+            estilos: {
+                backgroundColor: "#43d8c9",
+                color: "white",
+                padding: "30px",
+                margin: "20px 20px 0px"
+            }
+        };
     }
 
+    
     render(){
         return(
-            <section className="hero is-primary">
+            <section style={this.state.estilos} className="hero is-primary">
                 <div className="hero-body">
                     <div className="container">
                     <h1 className="title">Hoteles</h1>
