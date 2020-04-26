@@ -10,12 +10,13 @@ class DateFilter extends Component{
     render(){
         return(
             <div className="field">
-            <div className="control has-icons-left">
-                <input className="input" type="date" value={this.props.fecha}/>
-                <span className="icon is-small is-left">
-                    <i className={this.props.tipo}></i>
-                </span>
-            </div>
+                <div className="control has-icons-left">
+                    <input className="input" type="date" value={this.props.fecha}/>
+                    <span className="icon is-small is-left">
+                        <i className={this.props.icon}></i>
+                        {/* <ion-icon name="log-in-outline"></ion-icon> */}
+                    </span>
+                </div>
             </div>
         );
     }
