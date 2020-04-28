@@ -11,14 +11,18 @@ class OptionsFilter extends Component{
     }
 
     handleChange = (event) => {
-        this.setState(state => ({
+        this.setState((state) => ({
             selected: event.target.value
         }));
     };
 
     componentDidMount(){
-        const listItems = this.props.options.map((option) =>
-            <option>{option}</option>
+        const aux = {
+            lista: ''
+        }
+        aux.lista = this.props.options;
+        const listItems = aux.lista.map((option) =>
+            <option>{option.name}</option>
         );
 
         this.setState(state => ({
@@ -37,6 +41,7 @@ class OptionsFilter extends Component{
                     </div>
                     <div className="icon is-small is-left">
                         <i className="fas"></i>
+                        {/* <i className={this.props.icon}></i> */}
                     </div>
                 </div>
             </div>
