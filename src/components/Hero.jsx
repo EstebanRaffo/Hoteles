@@ -15,6 +15,16 @@ class Hero extends Component{
         };
     }
 
+    // onDateChange = (event) => {
+    //     let payload = this.props.filters;
+
+    //     if(payload.dateTo >= payload.dateFrom){
+    //         payload[event.target.name] = event.target.value;
+    //         this.props.onFilterChange(payload);
+    //     }
+      
+    // }
+
     
     render(){
         return(

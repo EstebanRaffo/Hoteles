@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Hero from "./components/Hero";
-import Filtros from "./components/Filtros";
+import Filters from "./components/Filters";
 // import Hoteles from "./components/Hoteles";
 import Moment from "moment";
 
@@ -47,13 +47,17 @@ class App extends Component{
     };
   }
 
-  
+  handleFilterChange = (payload) => {
+    this.setState({
+      filters: payload
+    })
+  }
 
   render(){
     return(
       <Fragment>
-         <Hero filters={this.state.filters}/>
-         <Filtros filters={this.state.filters}/>
+         <Hero filters={this.state.filters} />
+         <Filters filters={this.state.filters} onFilterChange = {this.handleFilterChange} />
          {/* <Hoteles />  */}
       </Fragment>  
     );  

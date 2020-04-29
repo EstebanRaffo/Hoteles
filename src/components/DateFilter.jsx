@@ -3,25 +3,20 @@ import React, { Component } from 'react';
 class DateFilter extends Component{
     constructor(props){
         super(props);
-
-        this.state = {
-            date: ''
-        };
+        // this.handleDateChange = this.handleDateChange.bind(this);
     }
 
-    handleChange = (event) => {
-        this.setState(state => ({
-            date: event.target.value
-        }));
+    handleDateChange = (event) => {
+        this.props.onDateChange(event);
     };
 
     render(){
         return(
             <div className="field">
                 <div className="control has-icons-left">
-                    <input className="input" type="date" value={this.props.date} onChange={this.handleChange}/>
+                    <input className="input" type="date" onChange={this.handleDateChange} value={this.props.date} name={this.props.name}/>
                     <span className="icon is-small is-left">
-                    <i className="fas"></i>
+                    <i className={`fas ${this.props.icon}`}></i>
                         {/* <i className="fas" value={this.props.icon}></i> */}
                         {/* <i className={this.props.icon}></i> */}
                         {/* <ion-icon name="log-in-outline"></ion-icon> */}
