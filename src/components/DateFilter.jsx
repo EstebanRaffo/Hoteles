@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import 'bulma/css/bulma.css';
+
 
 class DateFilter extends Component{
     constructor(props){
