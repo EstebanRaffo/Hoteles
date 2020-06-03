@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DateFilter from "./DateFilter";
 import OptionsFilter from "./OptionsFilter";
-import 'bulma/css/bulma.css';
+
 // import moment from "moment";
 
 

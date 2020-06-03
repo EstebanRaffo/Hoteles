@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import Filters from "./components/Filters";
 // import Hoteles from "./components/Hoteles";
 import Moment from "moment";
+import 'bulma/css/bulma.css';
 
 // function App() {
 //   return (

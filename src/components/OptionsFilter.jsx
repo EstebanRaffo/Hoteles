@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 class OptionsFilter extends Component{
@@ -31,6 +32,7 @@ class OptionsFilter extends Component{
     };
 
     render(){
+        const { options, selected, icon, defaultSel, label } = this.props;
         return(
             <div className="field">
                 <div className="control has-icons-left">
@@ -40,8 +42,9 @@ class OptionsFilter extends Component{
                         </select>
                     </div>
                     <div className="icon is-small is-left">
-                        <i className={`fas ${this.props.icon}`}></i>
-                        {/* <i className={this.props.icon}></i> */}
+                        {/* <FontAwesomeIcon icon={`fas ${this.props.icon}`} /> */}
+                        <i className={`fas ${icon}`}></i>
+                        
                     </div>
                 </div>
             </div>
