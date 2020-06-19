@@ -27,24 +27,20 @@ class OptionsFilter extends Component{
         }));
     }
 
-    handleOptionChange = (event) => {
-        this.props.onOptionChange(event);
-    };
 
     render(){
-        const { options, selected, icon, defaultSel, label } = this.props;
+        const { options, selected, icon, defaultSel, label, name, onOptionChange } = this.props;
         return(
             <div className="field">
                 <div className="control has-icons-left">
                     <div className="select" style={ {width: '100%'} }>
-                        <select style={ {width: '100%'} } onChange={this.handleOptionChange} value={this.state.selected} name={this.props.name}>
+                        <select style={ {width: '100%'} } onChange={onOptionChange} value={this.state.selected} name={name}> 
                             {this.state.options}
                         </select>
                     </div>
                     <div className="icon is-small is-left">
-                        {/* <FontAwesomeIcon icon={`fas ${this.props.icon}`} /> */}
+                        {/* <FontAwesomeIcon = {`fas ${this.props.icon}`} /> */}
                         <i className={`fas ${icon}`}></i>
-                        
                     </div>
                 </div>
             </div>

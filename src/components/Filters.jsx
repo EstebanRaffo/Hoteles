@@ -10,9 +10,6 @@ class Filters extends Component{
         super(props);
 
         this.state = {
-            rooms: '',
-            paises: '',
-            precios:'',
             estilosNavVar: {
                 backgroundColor: "#0779e4",
                 margin: "0px 20px",
@@ -22,29 +19,38 @@ class Filters extends Component{
                 display: "inline-block"
             }
         };
+        this.onOptionChange = this.onOptionChange.bind(this);
+        this.onDateChange = this.onDateChange.bind(this);
     }
 
     // Si lo analizas con atención podrás notar que el método tiene una funcionalidad muy simple, tomar el valor del objeto filters y 
     // reemplazar el valor del atributo que corresponde al nombre del input o el select que está disparando el evento. Una vez
     // reemplazado ese dato simplemente llama a la función onFilterChange que recibe como prop y de la cual definiremos el 
     // comportamiento en el componente App.
-    onOptionChange = (event) => {
+    // handleOptionChange(event)
+    onOptionChange(event){   
         let payload = this.props.filters;
-        console.log(payload)   
         payload[event.target.name] = event.target.value;
       
         this.props.onFilterChange(payload);
     }
 
-    onDateChange = (event) => {
+    onDateChange(event){
         let payload = this.props.filters;
-        // console.log(payload)
+    
         if(payload.dateTo >= payload.dateFrom){
             payload[event.target.name] = event.target.value;
             this.props.onFilterChange(payload);
         }
-      
     }
+
+    // filters: {
+    //     dateFrom: Moment(new Date()).format("YYYY-MM-DD"),
+    //     dateTo: Moment().add(1, "month").format("YYYY-MM-DD"),
+    //     country: "",
+    //     price: 0,
+    //     rooms: 0
+    // },
 
     // 1.4  Guía: Filtros (Parte 2) Checkpoint
     // Si todo salió bien, ya puedes poner a prueba el comportamiento de los eventos del componente Filters y sus hijos al ver cómo éstos 
@@ -54,45 +60,50 @@ class Filters extends Component{
     // su ejecución usando React Developer Tools 
     render(){
         return(
-            // style={this.state.estilosNavVar}
+         
             <nav className="navbar is-info" style={this.state.estilosNavVar}>
-                {/* style={this.state.estilosItem}  */}
                 <div className="navbar-item" style={this.state.estilosItem}>
                     <DateFilter
                         date={ this.props.filters.dateFrom}
                         icon="fa-sign-in-alt" 
-                        onDateChange = {this.onDateChange}/>
+                        onDateChange = {this.onDateChange}
+                        name="dateFrom"/>
+                        
                 </div>
-                {/* style={this.state.estilosItem} */}
+        
                 <div className="navbar-item" style={this.state.estilosItem}>
                     <DateFilter
                         date={ this.props.filters.dateTo }
                         icon="fa-sign-out-alt" 
-                        onDateChange = {this.onDateChange}/>
+                        onDateChange = {this.onDateChange}
+                        name="dateTo"/>
                 </div>
-                {/* style={this.state.estilosItem} */}
+             
                 <div className="navbar-item" style={this.state.estilosItem}>
                     <OptionsFilter
                         options = { [ {value: '', name: 'Todos los países'}, {value: 'Argentina', name: 'Argentina'}, {value: 'Brasil', name: 'Brasil'}, {value: 'Chile', name: 'Chile'}, {value: 'Uruguay', name: 'Uruguay'} ] } 
                         selected = { this.props.filters.country }
                         icon = "fa-globe" 
-                        onOptionChange = {this.onOptionChange}/>
+                        onOptionChange = {this.onOptionChange}
+                        name="country"/>
                 </div>
-                {/* style={this.state.estilosItem} */}
+    
                 <div className="navbar-item" style={this.state.estilosItem}>
                     <OptionsFilter
                         options = { [ {value: undefined, name: 'Cualquier precio'}, {value: 1, name: '$'}, {value: 2, name: '$$'}, {value: 3, name: '$$$'}, {value: 4, name: '$$$$'} ] }
                         selected = { this.props.filters.price }
                         icon = "fa-dollar-sign" 
-                        onOptionChange = {this.onOptionChange}/>
+                        onOptionChange = {this.onOptionChange}
+                        name="price"/>
                 </div>
-                {/* style={this.state.estilosItem} */}
+           
                 <div className="navbar-item" style={this.state.estilosItem}>
                     <OptionsFilter
                         options = { [ {value: undefined, name: 'Cualquier tamaño'}, {value: 10, name: 'Hotel pequeño'}, {value: 20, name: 'Hotel mediano'}, {value: 30, name: 'Hotel grande'} ] }
                         selected = { this.props.filters.rooms }
                         icon = "fa-bed" 
-                        onOptionChange = {this.onOptionChange}/>
+                        onOptionChange = {this.onOptionChange}
+                        name="room"/>
                 </div>
             </nav>
         );
@@ -101,3 +112,34 @@ class Filters extends Component{
 }
 
 export default Filters;
+
+{/* <nav className="navbar is-info" style={ {justifyContent: 'center'} }>
+  <div className="navbar-item">
+    <DateFilter
+      date={ props.filters.dateFrom}
+      icon="sign-in-alt" />
+  </div>
+  <div className="navbar-item">
+    <DateFilter
+      date={ props.filters.dateTo }
+      icon="sign-out-alt" />
+  </div>
+  <div className="navbar-item">
+    <OptionsFilter
+      options={ [ {value: undefined, name: 'Todos los países'}, {value: 'Argentina', name: 'Argentina'}, {value: 'Brasil', name: 'Brasil'}, {value: 'Chile', name: 'Chile'}, {value: 'Uruguay', name: 'Uruguay'} ] }
+      selected={ props.filters.country }
+      icon="globe" />
+  </div>
+  <div className="navbar-item">
+    <OptionsFilter
+      options={ [ {value: undefined, name: 'Cualquier precio'}, {value: 1, name: '$'}, {value: 2, name: '$$'}, {value: 3, name: '$$$'}, {value: 4, name: '$$$$'} ] }
+      selected={ props.filters.price }
+      icon="dollar-sign" />
+  </div>
+  <div className="navbar-item">
+    <OptionsFilter
+      options={ [ {value: undefined, name: 'Cualquier tamaño'}, {value: 10, name: 'Hotel pequeño'}, {value: 20, name: 'Hotel mediano'}, {value: 30, name: 'Hotel grande'} ] }
+      selected={ props.filters.rooms }
+      icon="bed" />
+  </div>
+</nav> */}

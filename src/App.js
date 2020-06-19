@@ -7,27 +7,6 @@ import Filters from "./components/Filters";
 import Moment from "moment";
 import 'bulma/css/bulma.css';
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
 class App extends Component{
   constructor(props){
     super(props);
@@ -40,7 +19,7 @@ class App extends Component{
         dateTo: Moment().add(1, "month").format("YYYY-MM-DD"),
         country: "",
         price: 0,
-        rooms: 0
+        room: 0
       },
       hotels: [],
       filteredHotels: [],
@@ -51,8 +30,22 @@ class App extends Component{
   handleFilterChange = (payload) => {
     this.setState({
       filters: payload
-    })
+    });
   }
+
+  // https://es.reactjs.org/docs/faq-state.html
+
+  // incrementCount() {
+  //   this.setState((state) => {
+  //     // Importante: lee `state` en vez de `this.state` al actualizar.
+  //     return {count: state.count + 1}
+  //   });
+  // }
+
+  // this.setState((state, props) => ({
+  //   counter: state.counter + props.increment
+  // }));
+
 
   render(){
     return(
