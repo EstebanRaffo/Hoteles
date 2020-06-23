@@ -35,7 +35,8 @@ class Hero extends Component{
                     <h1 className="title">Hoteles</h1>
                     <h2 className="subtitle">
                     desde el 
-                    <strong>{this.props.filters.dateFrom}</strong> hasta el <strong>{this.props.filters.dateTo}</strong>
+                    <strong> {Moment(this.props.filters.dateFrom).format("D [de] MMMM [del] YYYY")} </strong> 
+                    hasta el <strong>{Moment(this.props.filters.dateTo).format("D [de] MMMM [del] YYYY")}</strong>
                     {/* {Moment.locale()}  */}
                         {/* desde el <strong>dddd, DD de mmmm de AAAA</strong> hasta el <strong>dddd, DD de mmmm de AAAA</strong> */}
                     </h2>

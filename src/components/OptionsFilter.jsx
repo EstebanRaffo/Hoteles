@@ -15,11 +15,11 @@ class OptionsFilter extends Component{
 
     componentDidMount(){
         const aux = {
-            lista: ''
+            lista: []
         }
         aux.lista = this.props.options;
         const listItems = aux.lista.map((option) =>
-            <option>{option.name}</option>
+            <option value={option.value}>{option.name}</option>
         );
 
         this.setState(state => ({
@@ -27,19 +27,23 @@ class OptionsFilter extends Component{
         }));
     }
 
+    handleChange = (event) => {
+        this.setState({selected: event.target.value});
+        this.props.onOptionChange(event);
+    }
+
 
     render(){
-        const { options, selected, icon, defaultSel, label, name, onOptionChange } = this.props;
+        const { options, selected, icon, defaultSel, label, name} = this.props;
         return(
             <div className="field">
                 <div className="control has-icons-left">
                     <div className="select" style={ {width: '100%'} }>
-                        <select style={ {width: '100%'} } onChange={onOptionChange} value={this.state.selected} name={name}> 
+                        <select style={ {width: '100%'} } onChange={this.handleChange} value={this.state.selected} name={name}> 
                             {this.state.options}
                         </select>
                     </div>
                     <div className="icon is-small is-left">
-                        {/* <FontAwesomeIcon = {`fas ${this.props.icon}`} /> */}
                         <i className={`fas ${icon}`}></i>
                     </div>
                 </div>

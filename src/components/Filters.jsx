@@ -17,7 +17,9 @@ class Filters extends Component{
             },
             estilosItem: {
                 display: "inline-block"
-            }
+            }, 
+            from: '',
+            to: ''
         };
         this.onOptionChange = this.onOptionChange.bind(this);
         this.onDateChange = this.onDateChange.bind(this);
@@ -39,6 +41,13 @@ class Filters extends Component{
         let payload = this.props.filters;
     
         if(payload.dateTo >= payload.dateFrom){
+            payload[event.target.name] = event.target.value;
+            this.props.onFilterChange(payload);
+        }
+        else{
+            this.setState({from: payload.dateTo, to: payload.dateTo})
+            payload.dateFrom = this.state.from;
+            payload.dateTo = this.state.to;
             payload[event.target.name] = event.target.value;
             this.props.onFilterChange(payload);
         }
@@ -64,11 +73,10 @@ class Filters extends Component{
             <nav className="navbar is-info" style={this.state.estilosNavVar}>
                 <div className="navbar-item" style={this.state.estilosItem}>
                     <DateFilter
-                        date={ this.props.filters.dateFrom}
+                        date={this.props.filters.dateFrom}
                         icon="fa-sign-in-alt" 
                         onDateChange = {this.onDateChange}
                         name="dateFrom"/>
-                        
                 </div>
         
                 <div className="navbar-item" style={this.state.estilosItem}>
@@ -113,6 +121,11 @@ class Filters extends Component{
 
 export default Filters;
 
+// 1.3  Guía: Filtros (Parte 1) 
+// Componente Filters
+// Para finalizar debemos crear un componente Filters, que luego agregaremos al componente App para mostrar todos los filtros posibles.
+
+// Teniendo en cuenta los componentes desarrollados en esta guía, debería contener una estructura similar a la siguiente.
 {/* <nav className="navbar is-info" style={ {justifyContent: 'center'} }>
   <div className="navbar-item">
     <DateFilter
