@@ -16,16 +16,6 @@ class Hero extends Component{
         };
     }
 
-    // onDateChange = (event) => {
-    //     let payload = this.props.filters;
-
-    //     if(payload.dateTo >= payload.dateFrom){
-    //         payload[event.target.name] = event.target.value;
-    //         this.props.onFilterChange(payload);
-    //     }
-      
-    // }
-
     
     render(){
         return(
@@ -38,7 +28,7 @@ class Hero extends Component{
                     <strong> {Moment(this.props.filters.dateFrom).format("D [de] MMMM [del] YYYY")} </strong> 
                     hasta el <strong>{Moment(this.props.filters.dateTo).format("D [de] MMMM [del] YYYY")}</strong>
                     {/* {Moment.locale()}  */}
-                        {/* desde el <strong>dddd, DD de mmmm de AAAA</strong> hasta el <strong>dddd, DD de mmmm de AAAA</strong> */}
+                    {/* desde el <strong>dddd, DD de mmmm de AAAA</strong> hasta el <strong>dddd, DD de mmmm de AAAA</strong> */}
                     </h2>
                     </div>
                 </div>
