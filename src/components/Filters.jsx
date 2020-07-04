@@ -30,6 +30,7 @@ class Filters extends Component{
     // reemplazado ese dato simplemente llama a la función onFilterChange que recibe como prop y de la cual definiremos el 
     // comportamiento en el componente App.
     // handleOptionChange(event)
+    // Ver spread operator Clase9/Edades y Formularios Ejemplo2
     onOptionChange(event){   
         let payload = this.props.filters;
         payload[event.target.name] = event.target.value;
