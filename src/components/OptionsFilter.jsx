@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 
 class OptionsFilter extends Component{
     constructor(props){
