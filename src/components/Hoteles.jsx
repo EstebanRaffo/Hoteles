@@ -5,7 +5,16 @@ import Hotel from "./Hotel";
 class Hoteles extends Component{
     constructor(props){
         super(props);
-        this.state = {}
+        this.state = {
+            styleHotels: {
+                display: "flex",
+                background: "#7caaf8bb",
+                margin: "0px 20px",
+                padding: "40px",
+                flexWrap: "wrap",
+                alignContent: "flex-start"
+            }, 
+        }
     }
 
     warning = () => {
@@ -20,9 +29,9 @@ class Hoteles extends Component{
 
     render(){
         const {hotels, isAllLoaded} = this.props;
-        
+        const {styleHotels} = this.state;
         return(
-            <div className="column is-one-third">
+            <div style={styleHotels}>
             {isAllLoaded ?                 
                 hotels.map(hotel => (
                     <Hotel

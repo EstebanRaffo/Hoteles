@@ -11,7 +11,7 @@ import {hotelsData} from "./scripts/data";
 class App extends Component{
   constructor(props){
     super(props);
-
+    // 1.6  Guía: Listando Hoteles
     this.state = {
       filters: {
         dateFrom: Moment(new Date()).format("YYYY-MM-DD"),
