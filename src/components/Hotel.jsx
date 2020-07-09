@@ -14,7 +14,7 @@ class Hotel extends Component {
   }
 
   render() {
-    const { name, photo, description, city, country, rooms, price } = this.props;
+    const {slug, name, photo, description, city, country, rooms, price } = this.props;
     const {styleHotel} = this.state;
     return (
       <div className="column is-one-third">
@@ -36,7 +36,7 @@ class Hotel extends Component {
             </div>
           </div>
           <div className="card-footer">
-            <a href="javascript:alert('No implementamos esto aún :(')" className="card-footer-item has-background-primary has-text-white has-text-weight-bold">
+            <a href={"/" + slug} className="card-footer-item has-background-primary has-text-white has-text-weight-bold">
               Reservar
             </a>
           </div>

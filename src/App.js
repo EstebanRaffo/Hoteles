@@ -27,9 +27,18 @@ class App extends Component{
   }
 
   handleFilterChange = (payload) => {
+    const newFilteredHotels = this.filterHotels(payload, this.state.hotels);
+
     this.setState({
-      filters: payload
+      filters: payload,
+      filteredHotels: newFilteredHotels
     });
+  }
+
+  filterHotels(payload, hotels) {
+    return hotels.filter(hf => {
+      return (hf.rooms <= (payload.rooms !== 'select' ? payload.rooms : hf.rooms))
+    })
   }
 
 

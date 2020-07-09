@@ -7,12 +7,8 @@ class Hoteles extends Component{
         super(props);
         this.state = {
             styleHotels: {
-                display: "flex",
                 background: "#7caaf8bb",
                 margin: "0px 20px",
-                padding: "40px",
-                flexWrap: "wrap",
-                alignContent: "flex-start"
             }, 
         }
     }
@@ -31,23 +27,29 @@ class Hoteles extends Component{
         const {hotels, isAllLoaded} = this.props;
         const {styleHotels} = this.state;
         return(
-            <div style={styleHotels}>
-            {isAllLoaded ?                 
-                hotels.map(hotel => (
-                    <Hotel
-                        name={hotel.name}
-                        photo={hotel.photo}
-                        description={hotel.description}
-                        city={hotel.city}
-                        country={hotel.country}
-                        rooms={hotel.rooms}
-                        price={hotel.price}
-                    />
-                ))
-                : (
-                    this.warning
-                )}
-            </div>
+            <section className="section" style={ styleHotels }>
+                <div className="container">
+                    <div className="columns is-multiline">
+                        {isAllLoaded ?                 
+                            hotels.map(hotel => (
+                                <Hotel
+                                    key={hotel.slug}
+                                    slug={hotel.slug}
+                                    name={hotel.name}
+                                    photo={hotel.photo}
+                                    description={hotel.description}
+                                    city={hotel.city}
+                                    country={hotel.country}
+                                    rooms={hotel.rooms}
+                                    price={hotel.price}
+                                />
+                            ))
+                            : (
+                                this.warning
+                        )}
+                    </div>
+                </div>
+            </section>
         )
     }
 }

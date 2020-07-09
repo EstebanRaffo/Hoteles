@@ -12,7 +12,11 @@ class Costo extends Component{
         const {price} = this.props;
         const {cost} = this.state;
         for(let i = 0; i < 4; i++){
-            cost.push(i <= price);
+            const obj = {
+                key: i,
+                value: i <= price 
+            }
+            cost.push(obj);
         }
         this.setState({cost});
     }
@@ -23,11 +27,11 @@ class Costo extends Component{
             <div className="control">
               <div className="tags">
                 <span className="tag is-medium is-info">
-                {cost.map(isTrue => 
-                    isTrue ? (
-                        <i className="fas fa-dollar-sign" style={{ margin: "0 .125em" }}></i>  
+                {cost.map(obj => 
+                    obj.value ? (
+                        <i key={obj.key} className="fas fa-dollar-sign" style={{ margin: "0 .125em" }}></i>  
                     ) : (
-                        <i className="fas fa-dollar-sign" style={{ margin: "0 .125em", opacity: ".25" }}></i>
+                        <i key={obj.key} className="fas fa-dollar-sign" style={{ margin: "0 .125em", opacity: ".25" }}></i>
                     )
                 )}
                 </span>

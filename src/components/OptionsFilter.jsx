@@ -17,10 +17,10 @@ class OptionsFilter extends Component{
         }
         aux.lista = this.props.options;
         const listItems = aux.lista.map((option) =>
-            <option value={option.value}>{option.name}</option>
+            <option key={option.value}>{option.name}</option>
         );
 
-        this.setState(state => ({
+        this.setState(() => ({
             options: listItems
         }));
     }
@@ -32,7 +32,7 @@ class OptionsFilter extends Component{
 
 
     render(){
-        const { options, selected, icon, defaultSel, label, name} = this.props;
+        const { icon, name} = this.props;
         return(
             <div className="field">
                 <div className="control has-icons-left">
