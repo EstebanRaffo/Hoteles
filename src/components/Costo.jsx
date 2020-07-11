@@ -11,7 +11,7 @@ class Costo extends Component{
     componentDidMount(){
         const {price} = this.props;
         const {cost} = this.state;
-        for(let i = 0; i < 4; i++){
+        for(let i = 1; i <= 4; i++){
             const obj = {
                 key: i,
                 value: i <= price 

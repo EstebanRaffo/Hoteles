@@ -45,7 +45,7 @@ class Hoteles extends Component{
                                 />
                             ))
                             : (
-                                this.warning
+                                this.warning()
                         )}
                     </div>
                 </div>

@@ -52,6 +52,26 @@ class Filters extends Component{
     render(){
         const {estilosItem, estilosNavVar} = this.state;
         const {filters} = this.props;
+        const countryOptions = [ 
+            {value: 0, name: 'Todos los países'}, 
+            {value: 'Argentina', name: 'Argentina'}, 
+            {value: 'Brasil', name: 'Brasil'}, 
+            {value: 'Chile', name: 'Chile'}, 
+            {value: 'Uruguay', name: 'Uruguay'} 
+        ];
+        const priceOptions = [
+            {value: 0, name: 'Cualquier precio'}, 
+            {value: 1, name: '$'}, 
+            {value: 2, name: '$$'}, 
+            {value: 3, name: '$$$'}, 
+            {value: 4, name: '$$$$'} 
+        ];
+        const roomOptions = [ 
+            {value: 0, name: 'Cualquier tamaño'}, 
+            {value: 10, name: 'Hotel pequeño'}, 
+            {value: 20, name: 'Hotel mediano'}, 
+            {value: 30, name: 'Hotel grande'} 
+        ];
         return(
             <nav className="navbar is-info" style={estilosNavVar}>
                 <div className="navbar-item" style={estilosItem}>
@@ -72,7 +92,7 @@ class Filters extends Component{
              
                 <div className="navbar-item" style={estilosItem}>
                     <OptionsFilter
-                        options = { [ {value: '', name: 'Todos los países'}, {value: 'Argentina', name: 'Argentina'}, {value: 'Brasil', name: 'Brasil'}, {value: 'Chile', name: 'Chile'}, {value: 'Uruguay', name: 'Uruguay'} ] } 
+                        options = {countryOptions} 
                         selected = {filters.country}
                         icon = "fa-globe" 
                         onOptionChange = {this.onOptionChange}
@@ -81,7 +101,7 @@ class Filters extends Component{
     
                 <div className="navbar-item" style={estilosItem}>
                     <OptionsFilter
-                        options = { [ {value: undefined, name: 'Cualquier precio'}, {value: 1, name: '$'}, {value: 2, name: '$$'}, {value: 3, name: '$$$'}, {value: 4, name: '$$$$'} ] }
+                        options = {priceOptions}
                         selected = {filters.price}
                         icon = "fa-dollar-sign" 
                         onOptionChange = {this.onOptionChange}
@@ -90,7 +110,7 @@ class Filters extends Component{
            
                 <div className="navbar-item" style={estilosItem}>
                     <OptionsFilter
-                        options = { [ {value: undefined, name: 'Cualquier tamaño'}, {value: 10, name: 'Hotel pequeño'}, {value: 20, name: 'Hotel mediano'}, {value: 30, name: 'Hotel grande'} ] }
+                        options = {roomOptions}
                         selected = {filters.rooms}
                         icon = "fa-bed" 
                         onOptionChange = {this.onOptionChange}

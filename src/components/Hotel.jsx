@@ -18,10 +18,10 @@ class Hotel extends Component {
     const {styleHotel} = this.state;
     return (
       <div className="column is-one-third">
-        <div className="card" style={styleHotel}>
+        <div className="card" key={slug} style={styleHotel}>
           <div className="card-image">
             <figure className="image is-4by3">
-              <img src={photo} alt={name} />
+              <img src={photo} alt={slug} />
             </figure>
           </div>
           <div className="card-content">
