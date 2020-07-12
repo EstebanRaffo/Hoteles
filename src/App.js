@@ -14,15 +14,14 @@ class App extends Component{
     // 1.6  Guía: Listando Hoteles
     this.state = {
       filters: {
-        dateFrom: Moment(new Date()).format("YYYY-MM-DD"),
+        dateFrom: Moment().format("YYYY-MM-DD"),
         dateTo: Moment().add(1, "month").format("YYYY-MM-DD"),
         country: 0,
         price: 0,
         room: 0
       },
       hotels: hotelsData,
-      filteredHotels: [],
-      isAllLoaded: true
+      filteredHotels: []
     };
   }
 
@@ -32,55 +31,16 @@ class App extends Component{
     this.setState({filteredHotels});
   }
 
-  handleFilterChange = (payload) => {
-    const newFilteredHotels = this.filterHotels(payload, this.state.hotels);
-
-    newFilteredHotels.length > 0 ? 
-      this.setState({
-        filters: payload,
-        filteredHotels: newFilteredHotels,
-        isAllLoaded: true
-      }) 
-      : 
-      this.setState({
-        filters: payload,
-        isAllLoaded: false
-      })
+  handleFilterChange = (event) => {
+    var {filters} = this.state;
+    filters[event.target.name] = event.target.value;
+    this.setState({filters}, this.filterHotels(this.state.filters, this.state.hotels)); 
   }
 
   filterHotels = (filters, hotels) => {
-
-    const filteredHotelsByDate = this.filterByDates(hotels, filters.dateFrom, filters.dateTo);
-    var filteredHotels = filteredHotelsByDate;
-
-    if(filters.room){
-      const filteredHotelsByRoom = this.filterByRoom(filteredHotels, filters.room);
-      filteredHotels = filteredHotelsByRoom;
-    }
-    if(filters.price){
-      const filteredHotelsByPrice = this.filterByPrice(filteredHotels, filters.price);
-      filteredHotels = filteredHotelsByPrice;
-    }
-    if(filters.country){
-      const filteredHotelsByCountry = this.filterByCountry(filteredHotels, filters.country);
-      filteredHotels = filteredHotelsByCountry;
-    }
+    var filteredHotels = this.filterByDates(hotels, filters.dateFrom, filters.dateTo);
     
-    return filteredHotels;
-  }
-
-  // availabilityFrom: today.valueOf(),
-  // availabilityTo: today.valueOf() + 864000000, // 10 days
-  // rooms: 11,
-  // country: 'Argentina',
-  // price: 4
-  filterByDates = (hotels, dateFrom, dateTo) => {
-    return hotels.filter(hotel => {
-      return Moment(hotel.availabilityFrom).format("YYYY-MM-DD") >= dateFrom && Moment(hotel.availabilityTo).format("YYYY-MM-DD") <= dateTo
-    })
-  }
-
-  filterByRoom = (hotels, size) => {
+    var size = filters.room;
     switch(size){
       case 'Hotel pequeño': 
         size = 15;
@@ -95,12 +55,11 @@ class App extends Component{
         size = 0;
         break;
     }
-    return hotels.filter(hotel => {
-      return hotel.rooms <= size && hotel.rooms > (size - 15);
-    })
-  } 
-  
-  filterByPrice = (hotels, price) => {  
+    if(size){
+      filteredHotels = this.filterByRoom(filteredHotels, size);
+    }
+
+    var price = filters.price;
     switch(price){
       case '$':
         price = 1;
@@ -118,6 +77,30 @@ class App extends Component{
         price = 0;
         break;
     }
+    if(price){
+      filteredHotels = this.filterByPrice(filteredHotels, price);
+    }
+
+    if(filters.country !== "Todos los países"){
+      filteredHotels = this.filterByCountry(filteredHotels, filters.country);
+    }
+    
+    this.setState({filteredHotels});
+  }
+
+  filterByDates = (hotels, dateFrom, dateTo) => {
+    return hotels.filter(hotel => {
+      return Moment(hotel.availabilityFrom).format("YYYY-MM-DD") >= dateFrom && Moment(hotel.availabilityTo).format("YYYY-MM-DD") <= dateTo
+    })
+  }
+
+  filterByRoom = (hotels, size) => {
+    return hotels.filter(hotel => {
+      return hotel.rooms <= size && hotel.rooms > (size - 15);
+    })
+  } 
+  
+  filterByPrice = (hotels, price) => { 
     return hotels.filter(hotel => {
       return hotel.price === price;
     })
@@ -129,22 +112,26 @@ class App extends Component{
     })
   }
 
-
-
   render(){
-    const {filters, filteredHotels, isAllLoaded} = this.state;
+    const {filters, filteredHotels, hotels} = this.state;
+    console.log(hotels)
     console.log(filters)
     console.log(filteredHotels.length)
-    console.log(isAllLoaded)
+    console.log(
+      filteredHotels.map(hotel => {
+        const availabilityFrom = Moment(hotel.availabilityFrom).format("YYYY-MM-DD")
+        const availabilityTo =  Moment(hotel.availabilityTo).format("YYYY-MM-DD")
+        return {"disponible desde: ": availabilityFrom, "disponible hasta: ": availabilityTo}
+      })
+    )
     return(
       <Fragment>
          <Hero filters={filters} />
          <Filters filters={filters} onFilterChange={this.handleFilterChange} />
-         <Hoteles hotels={filteredHotels} isAllLoaded={isAllLoaded}/> 
+         <Hoteles hotels={filteredHotels}/> 
       </Fragment>  
     );  
   }
 }
-
 
 export default App;

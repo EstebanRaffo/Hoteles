@@ -24,13 +24,13 @@ class Hoteles extends Component{
     }
 
     render(){
-        const {hotels, isAllLoaded} = this.props;
+        const {hotels} = this.props;
         const {styleHotels} = this.state;
         return(
             <section className="section" style={ styleHotels }>
                 <div className="container">
                     <div className="columns is-multiline">
-                        {isAllLoaded ?                 
+                        {hotels.length > 0 ?                 
                             hotels.map(hotel => (
                                 <Hotel
                                     key={hotel.slug}
@@ -46,7 +46,8 @@ class Hoteles extends Component{
                             ))
                             : (
                                 this.warning()
-                        )}
+                            )
+                        }
                     </div>
                 </div>
             </section>

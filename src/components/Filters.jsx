@@ -6,7 +6,6 @@ import OptionsFilter from "./OptionsFilter";
 class Filters extends Component{
     constructor(props){
         super(props);
-
         this.state = {
             estilosNavVar: {
                 backgroundColor: "#0779e4",
@@ -19,39 +18,19 @@ class Filters extends Component{
         };
     }
 
-    onOptionChange = (event) => {   
-        let payload = this.props.filters;
-        payload[event.target.name] = event.target.value;
-      
-        this.props.onFilterChange(payload);
-    }
-
     onDateChange = (event) => {
-        let payload = this.props.filters;
+        const {filters, onFilterChange} = this.props;
+        filters[event.target.name] = event.target.value;
     
-        if(payload.dateTo >= payload.dateFrom){
-            payload[event.target.name] = event.target.value;
-            this.props.onFilterChange(payload);
+        if(filters.dateTo >= filters.dateFrom){
+            onFilterChange(event);
         }
-        // else{
-        //     payload.dateFrom = payload.dateTo;
-        //     payload[event.target.name] = event.target.value;
-        //     this.props.onFilterChange(payload);
-        // }
     }
-
-    // filters: {
-    //     dateFrom: Moment(new Date()).format("YYYY-MM-DD"),
-    //     dateTo: Moment().add(1, "month").format("YYYY-MM-DD"),
-    //     country: "",
-    //     price: 0,
-    //     rooms: 0
-    // },
 
 
     render(){
         const {estilosItem, estilosNavVar} = this.state;
-        const {filters} = this.props;
+        const {filters, onFilterChange} = this.props;
         const countryOptions = [ 
             {value: 0, name: 'Todos los países'}, 
             {value: 'Argentina', name: 'Argentina'}, 
@@ -95,7 +74,7 @@ class Filters extends Component{
                         options = {countryOptions} 
                         selected = {filters.country}
                         icon = "fa-globe" 
-                        onOptionChange = {this.onOptionChange}
+                        onOptionChange = {onFilterChange}
                         name="country"/>
                 </div>
     
@@ -104,7 +83,7 @@ class Filters extends Component{
                         options = {priceOptions}
                         selected = {filters.price}
                         icon = "fa-dollar-sign" 
-                        onOptionChange = {this.onOptionChange}
+                        onOptionChange = {onFilterChange}
                         name="price"/>
                 </div>
            
@@ -113,7 +92,7 @@ class Filters extends Component{
                         options = {roomOptions}
                         selected = {filters.rooms}
                         icon = "fa-bed" 
-                        onOptionChange = {this.onOptionChange}
+                        onOptionChange = {onFilterChange}
                         name="room"/>
                 </div>
             </nav>

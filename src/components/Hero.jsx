@@ -5,7 +5,6 @@ import Moment from "moment";
 class Hero extends Component{
     constructor(props){
         super(props);
-
         this.state = {
             style: {
                 backgroundColor: "#43d8c9",
