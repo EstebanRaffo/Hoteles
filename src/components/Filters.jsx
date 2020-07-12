@@ -19,7 +19,7 @@ class Filters extends Component{
     }
 
     onDateChange = (event) => {
-        const {filters, onFilterChange} = this.props;
+        var {filters, onFilterChange} = this.props;
         filters[event.target.name] = event.target.value;
     
         if(filters.dateTo >= filters.dateFrom){
