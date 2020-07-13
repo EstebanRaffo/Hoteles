@@ -25,14 +25,22 @@ class Hero extends Component{
                         <h1 className="title">Hoteles</h1>
                         <h2 className="subtitle">
                             {filters.country !== "Todos los países" && filters.country !== 0 && 
-                            (<strong className="subtitle">en {`${filters.country}  `}</strong>)} 
+                                (<strong className="subtitle">en {`${filters.country}  `}</strong>)} 
                             disponibles desde el 
                             <strong> {Moment(filters.dateFrom).format("dddd, D [de] MMMM [del] YYYY")} </strong> 
                             hasta el <strong>{Moment(filters.dateTo).format("dddd, D [de] MMMM [del] YYYY")}</strong>                
                         </h2>
-                        {filters.price !== 0 && (<h3 className="subtitle"><strong>Precio: {filters.price}</strong></h3>)}
-                        {filters.room !== 0 && (<h3 className="subtitle"><strong>Tamaño: {filters.room}</strong></h3>)}
-                        {/* Aclaraciones de Tamaños */}
+                        {filters.price !== 0 && filters.price !== "Cualquier precio" &&
+                            (<h3 className="subtitle"><strong>Precio: {filters.price}</strong></h3>)}
+                        {filters.room !== 0 && filters.room !== "Cualquier tamaño" &&
+                            (<h3 className="subtitle">
+                                <strong>
+                                    Tamaño: {filters.room === "Hotel pequeño" ? `${filters.room} (hasta 15 habitaciones)` :
+                                            filters.room === "Hotel mediano" ? `${filters.room} (entre 16 y 30 habitaciones)` :
+                                            filters.room === "Hotel grande" ? `${filters.room} (más de 30 habitaciones)` : ""
+                                    }
+                                </strong>
+                            </h3>)}
                     </div>
                 </div>
             </section>
