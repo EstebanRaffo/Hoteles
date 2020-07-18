@@ -11,7 +11,7 @@ import {hotelsData} from "./scripts/data";
 class App extends Component{
   constructor(props){
     super(props);
-    // 1.6  Guía: Listando Hoteles
+   
     this.state = {
       filters: {
         dateFrom: Moment().format("YYYY-MM-DD"),
@@ -32,8 +32,9 @@ class App extends Component{
   }
 
   handleFilterChange = (event) => {
+    const {name, value} = event.target;
     var {filters} = this.state;
-    filters[event.target.name] = event.target.value;
+    filters[name] = value;
     this.setState({filters}, this.filterHotels(this.state.filters, this.state.hotels)); 
   }
 
