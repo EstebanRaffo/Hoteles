@@ -15,7 +15,7 @@ class App extends Component{
     this.state = {
       filters: {
         dateFrom: Moment().format("YYYY-MM-DD"),
-        dateTo: Moment().add(1, "month").format("YYYY-MM-DD"),
+        dateTo: Moment().add(1, "day").format("YYYY-MM-DD"),
         country: 0,
         price: 0,
         room: 0
@@ -91,7 +91,7 @@ class App extends Component{
 
   filterByDates = (hotels, dateFrom, dateTo) => {
     return hotels.filter(hotel => {
-      return Moment(hotel.availabilityFrom).format("YYYY-MM-DD") >= dateFrom && Moment(hotel.availabilityTo).format("YYYY-MM-DD") <= dateTo
+      return dateFrom >= Moment(hotel.availabilityFrom).format("YYYY-MM-DD") && dateTo <= Moment(hotel.availabilityTo).format("YYYY-MM-DD")
     })
   }
 
