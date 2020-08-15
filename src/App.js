@@ -115,16 +115,19 @@ class App extends Component{
 
   render(){
     const {filters, filteredHotels, hotels} = this.state;
-    console.log(hotels)
+    console.log(hotels.map(hotel => {
+      const availabilityFrom = Moment(hotel.availabilityFrom).format("YYYY-MM-DD")
+      const availabilityTo =  Moment(hotel.availabilityTo).format("YYYY-MM-DD")
+      return {"Hotel: ": hotel.name, "disponible desde: ": availabilityFrom, "disponible hasta: ": availabilityTo}
+    }))
     console.log(filters)
     console.log(filteredHotels.length)
     console.log(
       filteredHotels.map(hotel => {
         const availabilityFrom = Moment(hotel.availabilityFrom).format("YYYY-MM-DD")
         const availabilityTo =  Moment(hotel.availabilityTo).format("YYYY-MM-DD")
-        return {"disponible desde: ": availabilityFrom, "disponible hasta: ": availabilityTo}
-      })
-    )
+        return {"Hotel: ": hotel.name, "disponible desde: ": availabilityFrom, "disponible hasta: ": availabilityTo}
+      }))
     return(
       <Fragment>
          <Hero filters={filters} />
