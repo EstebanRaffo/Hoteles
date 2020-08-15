@@ -120,8 +120,8 @@ class App extends Component{
       const availabilityTo =  Moment(hotel.availabilityTo).format("YYYY-MM-DD")
       return {"Hotel: ": hotel.name, "disponible desde: ": availabilityFrom, "disponible hasta: ": availabilityTo}
     }))
-    console.log(filters)
-    console.log(filteredHotels.length)
+    console.log("Selección: ", filters)
+    console.log("Se encontraron", filteredHotels.length, "hoteles: ")
     console.log(
       filteredHotels.map(hotel => {
         const availabilityFrom = Moment(hotel.availabilityFrom).format("YYYY-MM-DD")
